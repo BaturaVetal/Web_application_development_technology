@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Users Status{% endblock %}
+
+{% block content %}
+<h1>Users Status</h1>
+
+<h2>Online Users</h2>
+<ul>
+    {% for user in online_users %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+</ul>
+
+<h2>Offline Users</h2>
+<ul>
+    {% for user in offline_users %}
+        <li>{{ user.username }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

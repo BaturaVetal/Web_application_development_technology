@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Operation Name</th>
+                <th>Data</th>
+                <th>Result</th>
+                <th>Date/Time</th>
+            </tr>
+        </thead>
+        <tbody id="operations">
+
+        </tbody>
+    </table>
+
+    <script>
+        const ws = new WebSocket('ws://' + window.location.host + '/ws/admin/');
+        ws.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${data.operation_name}</td>
+                <td>${data.data}</td>
+                <td>${data.result}</td>
+                <td>${data.datetime}</td>
+            `;
+            document.getElementById('operations').appendChild(row);
+        };
+    </script>
+</body>
+</html>

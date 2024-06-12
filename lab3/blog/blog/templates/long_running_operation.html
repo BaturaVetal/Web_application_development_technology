@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Long Running Operation</title>
+</head>
+<body>
+    <form method="POST" action="/api/blog/long_running_operation/">
+        {% csrf_token %}
+        <label for="operation_data">Operation Data:</label>
+        <input type="text" id="operation_data" name="operation_data" required>
+        <br>
+        <button type="submit">Start Long Running Operation</button>
+    </form>
+</body>
+</html>
